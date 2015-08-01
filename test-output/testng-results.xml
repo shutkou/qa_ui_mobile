@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="64439" started-at="2015-08-01T04:12:39Z" finished-at="2015-08-01T04:13:44Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="64439" started-at="2015-08-01T04:12:39Z" finished-at="2015-08-01T04:13:44Z">
+      <class name="com.setngo.auth.registrationTest">
+        <test-method status="PASS" signature="testApp()[pri:0, instance:com.setngo.auth.registrationTest@4e04a765]" name="testApp" duration-ms="64408" started-at="2015-07-31T21:12:39Z" finished-at="2015-07-31T21:13:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testApp -->
+      </class> <!-- com.setngo.auth.registrationTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
