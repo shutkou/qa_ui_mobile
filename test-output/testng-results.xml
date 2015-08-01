@@ -2,15 +2,19 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="64439" started-at="2015-08-01T04:12:39Z" finished-at="2015-08-01T04:13:44Z">
+  <suite name="Default suite" duration-ms="113600" started-at="2015-08-01T21:03:48Z" finished-at="2015-08-01T21:05:41Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="64439" started-at="2015-08-01T04:12:39Z" finished-at="2015-08-01T04:13:44Z">
+    <test name="Default test" duration-ms="113600" started-at="2015-08-01T21:03:48Z" finished-at="2015-08-01T21:05:41Z">
       <class name="com.setngo.auth.registrationTest">
-        <test-method status="PASS" signature="testApp()[pri:0, instance:com.setngo.auth.registrationTest@4e04a765]" name="testApp" duration-ms="64408" started-at="2015-07-31T21:12:39Z" finished-at="2015-07-31T21:13:44Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.setngo.auth.registrationTest@68837a77]" name="setUp" is-config="true" duration-ms="63667" started-at="2015-08-01T14:03:48Z" finished-at="2015-08-01T14:04:52Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testApp -->
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="registrationHappyPathTest()[pri:0, instance:com.setngo.auth.registrationTest@68837a77]" name="registrationHappyPathTest" duration-ms="49902" started-at="2015-08-01T14:04:52Z" finished-at="2015-08-01T14:05:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- registrationHappyPathTest -->
       </class> <!-- com.setngo.auth.registrationTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
