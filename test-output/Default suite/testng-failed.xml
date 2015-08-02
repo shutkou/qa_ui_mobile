@@ -5,7 +5,8 @@
     <classes>
       <class name="com.setngo.auth.registrationTest">
         <methods>
-          <include name="testApp"/>
+          <include name="setUp"/>
+          <include name="registrationHappyPathTest"/>
         </methods>
       </class> <!-- com.setngo.auth.registrationTest -->
     </classes>

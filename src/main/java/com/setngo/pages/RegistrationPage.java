@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -18,13 +17,10 @@ public class RegistrationPage {
 	private WebDriverWait wait;
 	
 	public RegistrationPage(AppiumDriver<WebElement> driver) {
-
 		this.wait = new WebDriverWait(driver, 52);
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver, 30, TimeUnit.SECONDS), this);
-		
 	}
-	
 	
 	@FindBy(id = "android:id/button1")
 	@AndroidFindBy(id="android:id/button1")
@@ -58,8 +54,9 @@ public class RegistrationPage {
 	private WebElement finishBtn;
 
 	private String email;
-
 	private String password;
+	private String confirmPassword;
+	private Boolean termsConfirmed = true;
 	
 	public WebElement getFirstBtn(){
 		return firstBtn;
@@ -92,7 +89,7 @@ public class RegistrationPage {
 	public WebElement getFinishBtn(){
 		return finishBtn;
 	}
-	
+
 	public RegistrationPage createAccount() {
 		return this;
 	}
@@ -106,14 +103,24 @@ public class RegistrationPage {
 		this.password = password;
 		return this;
 	}
+
+	public RegistrationPage withConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+		return this;
+	}
+	
+	public RegistrationPage withTerms(Boolean termsConfirmed) {
+		this.termsConfirmed = termsConfirmed;
+		return this;
+	}
 	
 	public void create() {
-		wait.until(ExpectedConditions.visibilityOf(this.getRegisterBtn()));
+		wait.until(ExpectedConditions.elementToBeClickable(this.getRegisterBtn()));
 		this.getRegisterBtn().click();
 		this.fillOutEmail(email);
 		this.fillOutPassword(password);
-		this.fillOutConfirmPassword(password);
-		this.getTermsCheckBox().click();
+		this.fillOutConfirmPassword(confirmPassword);
+		this.confirmTerms(termsConfirmed);
 		this.getFinishBtn().click();
 	}
 	
@@ -124,8 +131,15 @@ public class RegistrationPage {
 	public void fillOutPassword(String password){
 		this.getPasswordField().sendKeys(password);
 	}
+
+	public void fillOutConfirmPassword(String confirmPassword){
+		if(confirmPassword == null)
+			confirmPassword = this.password;
+		this.getConfirmPasswordField().sendKeys(confirmPassword);
+	}
 	
-	public void fillOutConfirmPassword(String password){
-		this.getConfirmPasswordField().sendKeys(password);
+	public void confirmTerms(Boolean termsConfirmed){
+		if(termsConfirmed)
+		this.getTermsCheckBox().click();
 	}
 }
