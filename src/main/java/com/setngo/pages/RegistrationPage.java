@@ -2,8 +2,10 @@ package com.setngo.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
@@ -14,33 +16,39 @@ public class RegistrationPage {
 	
 	public RegistrationPage(AppiumDriver<WebElement> driver) {
 
-		this.wait = new WebDriverWait(driver, 3200000);
+		this.wait = new WebDriverWait(driver, 32);
 		this.driver = driver;
 	}
 	
 	
 	@FindBy(id = "android:id/button1")
-	@AndroidFindBy(id = "android:id/button1")
+	@AndroidFindBy(id="android:id/button1")
 	private WebElement firstBtn;
 	
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/sign_in")
 	private WebElement signInBtn;
 	
+	@FindBy(id = "com.setngo.setngodriver:id/register")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/register")
 	private WebElement registerBtn;
 	
+	@FindBy(id = "com.setngo.setngodriver:id/email")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/email")
 	private WebElement emailField;
 	
+	@FindBy(id = "com.setngo.setngodriver:id/pass")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/pass")
 	private WebElement passwordField;
 	
+	@FindBy(id = "com.setngo.setngodriver:id/conf_pass")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/conf_pass")
 	private WebElement confirmPasswordField;
 	
+	@FindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
 	private WebElement termsCheckBox;
 
+	@FindBy(id = "com.setngo.setngodriver:id/login")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/login")
 	private WebElement finishBtn;
 
@@ -96,7 +104,7 @@ public class RegistrationPage {
 	}
 	
 	public void create() {
-		wait.until(ExpectedConditions.elementToBeClickable(this.getRegisterBtn()));
+		wait.until(ExpectedConditions.visibilityOf(this.getRegisterBtn()));
 		this.getRegisterBtn().click();
 		this.fillOutEmail(email);
 		this.fillOutPassword(password);

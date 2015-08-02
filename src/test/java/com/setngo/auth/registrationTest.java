@@ -23,6 +23,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class registrationTest {
 
 	AppiumDriver<WebElement> dr;
+	public RegistrationPage registrationPage;
 
 	@Test
 	public void testApp() throws MalformedURLException, InterruptedException {
@@ -40,10 +41,11 @@ public class registrationTest {
 				"http://127.0.0.1:4723/wd/hub"), capabilities);
 
 		dr.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(dr, 420000);
+		WebDriverWait wait = new WebDriverWait(dr, 42);
 		
-		RegistrationPage registrationPage = new RegistrationPage(dr);
-		PageFactory.initElements(new AppiumFieldDecorator(dr, 30, TimeUnit.SECONDS), registrationPage);
+		registrationPage = new RegistrationPage(dr);
+		PageFactory.initElements(dr, registrationPage);
+		//PageFactory.initElements(new AppiumFieldDecorator(dr, 30, TimeUnit.SECONDS), registrationPage);
 		
 		wait.until(ExpectedConditions.visibilityOf(registrationPage.getFirstBtn()));
 		registrationPage.getFirstBtn().click();
