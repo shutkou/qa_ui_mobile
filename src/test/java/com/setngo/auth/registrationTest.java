@@ -3,11 +3,14 @@ package com.setngo.auth;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import com.github.javafaker.Faker;
 import com.setngo.pages.RegistrationPage;
 
 public class registrationTest extends baseUiTest {
 
 	private RegistrationPage registrationPage;
+	private Faker faker = new Faker();
 	
 	@BeforeClass
 	void setUp() throws Exception{
@@ -20,8 +23,8 @@ public class registrationTest extends baseUiTest {
 	@Test
 	public void registrationHappyPathTest() throws Exception {
 		registrationPage.createAccount()
-		.withEmail("nick@nikolas.com")
-		.withPassword("12345678")
+		.withEmail(faker.internet().emailAddress())
+		.withPassword(faker.letterify("???????"))
 		.create();
 	}
 }
