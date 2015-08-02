@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -16,9 +15,7 @@ import org.testng.annotations.Test;
 import com.setngo.pages.RegistrationPage;
 
 import io.appium.java_client.AppiumDriver;
-
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class registrationTest {
 
@@ -33,7 +30,7 @@ public class registrationTest {
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-		capabilities.setCapability("deviceName", "Sample_Emulator");
+		capabilities.setCapability("deviceName", "emulator-5554");
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("app", app.getAbsolutePath());
 
@@ -42,18 +39,16 @@ public class registrationTest {
 
 		dr.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(dr, 42);
-		
+		String caps =  dr.getCapabilities().toString();
+		System.out.println(caps);
 		registrationPage = new RegistrationPage(dr);
-		PageFactory.initElements(dr, registrationPage);
-		//PageFactory.initElements(new AppiumFieldDecorator(dr, 30, TimeUnit.SECONDS), registrationPage);
-		
+	
 		wait.until(ExpectedConditions.visibilityOf(registrationPage.getFirstBtn()));
 		registrationPage.getFirstBtn().click();
 		registrationPage.createAccount()
 		.withEmail("nick@nikolas.com")
 		.withPassword("12345678")
 		.create();
-		
 	}
 
 }

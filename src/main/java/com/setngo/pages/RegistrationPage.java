@@ -1,13 +1,16 @@
 package com.setngo.pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class RegistrationPage {
 	
@@ -16,8 +19,10 @@ public class RegistrationPage {
 	
 	public RegistrationPage(AppiumDriver<WebElement> driver) {
 
-		this.wait = new WebDriverWait(driver, 32);
+		this.wait = new WebDriverWait(driver, 52);
 		this.driver = driver;
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 30, TimeUnit.SECONDS), this);
+		
 	}
 	
 	
@@ -58,7 +63,6 @@ public class RegistrationPage {
 	
 	public WebElement getFirstBtn(){
 		return firstBtn;
-		//return driver.findElementById("android:id/button1");
 	}
 	
 	public WebElement getSignInBtn(){
