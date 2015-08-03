@@ -13,7 +13,6 @@ public class loginTest extends baseUiTest {
 	
 	@BeforeClass
 	void setUp() throws Exception{
-		super.setUpAndroidDriver();
 		registrationPage = new RegistrationPage(dr);
 		wait.until(ExpectedConditions.visibilityOf(registrationPage.getFirstBtn()));
 		registrationPage.getFirstBtn().click();
