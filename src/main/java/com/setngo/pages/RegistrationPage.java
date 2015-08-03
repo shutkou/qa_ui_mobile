@@ -1,11 +1,15 @@
 package com.setngo.pages;
 
-import org.openqa.selenium.By;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 public class RegistrationPage {
 	
@@ -13,58 +17,85 @@ public class RegistrationPage {
 	private WebDriverWait wait;
 	
 	public RegistrationPage(AppiumDriver<WebElement> driver) {
-		this.wait = new WebDriverWait(driver, 3200000);
+		this.wait = new WebDriverWait(driver, 52);
 		this.driver = driver;
+		PageFactory.initElements(new AppiumFieldDecorator(driver, 30, TimeUnit.SECONDS), this);
 	}
-
-	private By firstBtn = By.id("android:id/button1");
-	private By signInBtn = By.id("com.setngo.setngodriver:id/sign_in");
-	private By registerBtn = By.id("com.setngo.setngodriver:id/register");
-	private By emailField = By.id("com.setngo.setngodriver:id/email");
-	private By passwordField = By.id("com.setngo.setngodriver:id/pass");
-	private By confirmPasswordField = By.id("com.setngo.setngodriver:id/conf_pass");
-	private By termsCheckBox = By.id("com.setngo.setngodriver:id/terms_checkbox");
-	private By finishBtn = By.id("com.setngo.setngodriver:id/login");
 	
+	@FindBy(id = "android:id/button1")
+	@AndroidFindBy(id="android:id/button1")
+	private WebElement firstBtn;
+	
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/sign_in")
+	private WebElement signInBtn;
+	
+	@FindBy(id = "com.setngo.setngodriver:id/register")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/register")
+	private WebElement registerBtn;
+	
+	@FindBy(id = "com.setngo.setngodriver:id/email")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/email")
+	private WebElement emailField;
+	
+	@FindBy(id = "com.setngo.setngodriver:id/pass")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/pass")
+	private WebElement passwordField;
+	
+	@FindBy(id = "com.setngo.setngodriver:id/conf_pass")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/conf_pass")
+	private WebElement confirmPasswordField;
+	
+	@FindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
+	private WebElement termsCheckBox;
+
+	@FindBy(id = "com.setngo.setngodriver:id/login")
+	@AndroidFindBy(id = "com.setngo.setngodriver:id/login")
+	private WebElement finishBtn;
+
 	private String email;
 	private String password;
 	private String confirmPassword;
 	private Boolean termsConfirmed = true;
 	
-	
 	public WebElement getFirstBtn(){
-		return driver.findElement(firstBtn);
+		return firstBtn;
 	}
 	
 	public WebElement getSignInBtn(){
-		return driver.findElement(signInBtn);
+		return signInBtn;
 	}
 	
 	public WebElement getRegisterBtn(){
-		return driver.findElement(registerBtn);
+		return registerBtn;
 	}
 	
 	public WebElement getEmailField(){
-		return driver.findElement(emailField);
+		return emailField;
 	}
 	
 	public WebElement getPasswordField(){
-		return driver.findElement(passwordField);
+		return passwordField;
 	}
 	
 	public WebElement getConfirmPasswordField(){
-		return driver.findElement(confirmPasswordField);
+		return confirmPasswordField;
 	}
 	
 	public WebElement getTermsCheckBox(){
-		return driver.findElement(termsCheckBox);
+		return termsCheckBox;
 	}
 	
 	public WebElement getFinishBtn(){
-		return driver.findElement(finishBtn);
+		return finishBtn;
+	}
+
+	public RegistrationPage createAccount() {
+		return this;
 	}
 	
-	public RegistrationPage createAccount() {
+	public RegistrationPage loginAs(String email) {
+		this.email = email;
 		return this;
 	}
 	
@@ -77,7 +108,7 @@ public class RegistrationPage {
 		this.password = password;
 		return this;
 	}
-	
+
 	public RegistrationPage withConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 		return this;
@@ -98,6 +129,14 @@ public class RegistrationPage {
 		this.getFinishBtn().click();
 	}
 	
+	public void login() {
+		wait.until(ExpectedConditions.elementToBeClickable(this.getSignInBtn()));
+		this.getSignInBtn().click();
+		this.fillOutEmail(email);
+		this.fillOutPassword(password);
+		this.getFinishBtn().click();
+	}
+	
 	public void fillOutEmail(String email){
 		this.getEmailField().sendKeys(email);
 	}
@@ -105,7 +144,7 @@ public class RegistrationPage {
 	public void fillOutPassword(String password){
 		this.getPasswordField().sendKeys(password);
 	}
-	
+
 	public void fillOutConfirmPassword(String confirmPassword){
 		if(confirmPassword == null)
 			confirmPassword = this.password;

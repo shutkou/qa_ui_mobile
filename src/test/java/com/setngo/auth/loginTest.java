@@ -1,13 +1,12 @@
 package com.setngo.auth;
-import java.util.Locale;
 
+import java.util.Locale;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.github.javafaker.Faker;
 import com.setngo.pages.RegistrationPage;
-public class registrationTest extends baseUiTest {
+public class loginTest extends baseUiTest {
 
 	private RegistrationPage registrationPage;
 	private Faker faker = new Faker(Locale.ENGLISH);
@@ -20,20 +19,9 @@ public class registrationTest extends baseUiTest {
 	}
 	
 	@Test
-	public void registrationHappyPathTest() throws Exception {
-		registrationPage.createAccount()
-		.withEmail(faker.internet().emailAddress())
+	public void loginHappyPathTest() throws Exception {
+		registrationPage.loginAs(faker.internet().emailAddress())
 		.withPassword(faker.letterify("???????"))
-		.create();
-	}
-	
-	@Test
-	public void printTest1() throws Exception {
-		System.out.println("Test 1");
-	}
-	
-	@Test
-	public void printTest2() throws Exception {
-		System.out.println("Test 2");
+		.login();
 	}
 }
