@@ -26,14 +26,4 @@ public class registrationTest extends baseUiTest {
 		.withPassword(faker.letterify("???????"))
 		.create();
 	}
-	
-	@Test
-	public void printTest1() throws Exception {
-		System.out.println("Test 1");
-	}
-	
-	@Test
-	public void printTest2() throws Exception {
-		System.out.println("Test 2");
-	}
 }
