@@ -54,6 +54,32 @@
             <scope>test</scope>
         </dependency>
 
+<dependency>
+    <groupId>com.github.javafaker</groupId>
+    <artifactId>javafaker</artifactId>
+    <version>0.4</version>
+	</dependency>
+
   </dependencies>
-  
+    <build>
+  <plugins>
+  <plugin>
+    <artifactId>maven-clean-plugin</artifactId>
+    <configuration>
+        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+        <filesets>
+            <!-- delete directories that will be generated when you 
+                 start the develpment server/client in eclipse  
+            -->
+            <fileset>
+                <directory>target</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </fileset>
+        </filesets>
+    </configuration>
+</plugin>
+</plugins>
+</build>
 </project>

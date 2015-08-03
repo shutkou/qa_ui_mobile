@@ -94,6 +94,11 @@ public class RegistrationPage {
 		return this;
 	}
 	
+	public RegistrationPage loginAs(String email) {
+		this.email = email;
+		return this;
+	}
+	
 	public RegistrationPage withEmail(String email) {
 		this.email = email;
 		return this;
@@ -121,6 +126,14 @@ public class RegistrationPage {
 		this.fillOutPassword(password);
 		this.fillOutConfirmPassword(confirmPassword);
 		this.confirmTerms(termsConfirmed);
+		this.getFinishBtn().click();
+	}
+	
+	public void login() {
+		wait.until(ExpectedConditions.elementToBeClickable(this.getSignInBtn()));
+		this.getSignInBtn().click();
+		this.fillOutEmail(email);
+		this.fillOutPassword(password);
 		this.getFinishBtn().click();
 	}
 	
