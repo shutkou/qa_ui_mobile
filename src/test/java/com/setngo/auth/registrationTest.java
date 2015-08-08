@@ -1,7 +1,6 @@
 package com.setngo.auth;
 import java.util.Locale;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,8 +14,6 @@ public class registrationTest extends baseUiTest {
 	@BeforeClass
 	void setUp() throws Exception{
 		registrationPage = new RegistrationPage(dr);
-		wait.until(ExpectedConditions.visibilityOf(registrationPage.getFirstBtn()));
-		registrationPage.getFirstBtn().click();
 	}
 	
 	@Test
