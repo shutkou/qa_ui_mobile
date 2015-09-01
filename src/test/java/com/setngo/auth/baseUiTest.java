@@ -34,7 +34,7 @@ public class baseUiTest {
 		}
 	
 	protected void setUpAndroidDriver() throws Exception {
-		File app = new File(classpathRoot, "/apps/app.apk");
+		File app = new File(classpathRoot, "/apps/app-debug.apk");
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Sample_Emulator");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 		capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
@@ -43,8 +43,8 @@ public class baseUiTest {
 		}
 	
 	protected void setUpIosDriver() throws Exception {
-		File app = new File(classpathRoot, "/apps/app.api");
-		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Sample_Emulator");
+		File app = new File(classpathRoot, "/apps/SetNGo.app");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
 		capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		dr = new IOSDriver<WebElement>(new URL(appiumServer), capabilities);

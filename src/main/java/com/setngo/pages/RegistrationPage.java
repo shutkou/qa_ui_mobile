@@ -7,10 +7,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+
+import bsh.Console;
+
+import com.gargoylesoftware.htmlunit.javascript.configuration.BrowserName;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.iOSFindBy;
 
 public class RegistrationPage {
 	
@@ -28,31 +34,44 @@ public class RegistrationPage {
 	@AndroidFindBy(id="android:id/button1")
 	private WebElement firstBtn;
 	
+	@iOSFindBy(name = "Ok")
+	private WebElement okBtn;
+	
+	@iOSFindBy(name = "Go")
+	private WebElement goBtn;
+	
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/sign_in")
+	@iOSFindBy(name = "Sign in")
 	private WebElement signInBtn;
 	
 	@FindBy(id = "com.setngo.setngodriver:id/register")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/register")
+	@iOSFindBy(name = "Register")
 	private WebElement registerBtn;
 	
 	@FindBy(id = "com.setngo.setngodriver:id/email")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/email")
+	@iOSFindBy(xpath = "//UIAApplication[1]/UIAWindow[2]/UIATextField[1]")
 	private WebElement emailField;
 	
 	@FindBy(id = "com.setngo.setngodriver:id/pass")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/pass")
+	@iOSFindBy(xpath = "//UIAApplication[1]/UIAWindow[2]/UIASecureTextField[1]")
 	private WebElement passwordField;
 	
 	@FindBy(id = "com.setngo.setngodriver:id/conf_pass")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/conf_pass")
+	@iOSFindBy(xpath = "//UIAApplication[1]/UIAWindow[2]/UIASecureTextField[2]")
 	private WebElement confirmPasswordField;
 	
 	@FindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/terms_checkbox")
+	@iOSFindBy(name = "Terms & Conditions")
 	private WebElement termsCheckBox;
 
 	@FindBy(id = "com.setngo.setngodriver:id/login")
 	@AndroidFindBy(id = "com.setngo.setngodriver:id/login")
+	@iOSFindBy(name = "FINISH")
 	private WebElement finishBtn;
 
 	private String email;
@@ -62,6 +81,14 @@ public class RegistrationPage {
 	
 	public WebElement getFirstBtn(){
 		return firstBtn;
+	}
+	
+	public WebElement getGoBtn(){
+		return goBtn;
+	}
+	
+	public WebElement getOkBtn(){
+		return okBtn;
 	}
 	
 	public WebElement getSignInBtn(){
@@ -121,12 +148,19 @@ public class RegistrationPage {
 		return this;
 	}
 	
-	public void create() {
+	public void create() {			
+		if (driver.getCapabilities().getBrowserName().equalsIgnoreCase("ios"))
+		{
+			wait.until(ExpectedConditions.elementToBeClickable(this.getOkBtn()));
+			this.getOkBtn().click();
+		}
 		wait.until(ExpectedConditions.elementToBeClickable(this.getRegisterBtn()));
 		this.getRegisterBtn().click();
 		this.fillOutEmail(email);
 		this.fillOutPassword(password);
 		this.fillOutConfirmPassword(confirmPassword);
+		if (driver.getCapabilities().getBrowserName().equalsIgnoreCase("ios"))
+			this.getGoBtn().click();
 		this.confirmTerms(termsConfirmed);
 		this.getFinishBtn().click();
 	}

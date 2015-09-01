@@ -2,20 +2,31 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="113600" started-at="2015-08-01T21:03:48Z" finished-at="2015-08-01T21:05:41Z">
+  <suite name="Suite" duration-ms="23380" started-at="2015-09-01T04:07:39Z" finished-at="2015-09-01T04:08:03Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="113600" started-at="2015-08-01T21:03:48Z" finished-at="2015-08-01T21:05:41Z">
+    <test name="Test" duration-ms="23380" started-at="2015-09-01T04:07:39Z" finished-at="2015-09-01T04:08:03Z">
       <class name="com.setngo.auth.registrationTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.setngo.auth.registrationTest@68837a77]" name="setUp" is-config="true" duration-ms="63667" started-at="2015-08-01T14:03:48Z" finished-at="2015-08-01T14:04:52Z">
+        <test-method status="PASS" signature="setUpDriver(java.lang.String)[pri:0, instance:com.setngo.auth.registrationTest@4264b240]" name="setUpDriver" is-config="true" duration-ms="13800" started-at="2015-08-31T21:07:25Z" finished-at="2015-08-31T21:07:39Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ios]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpDriver -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.setngo.auth.registrationTest@4264b240]" name="setUp" is-config="true" duration-ms="98" started-at="2015-08-31T21:07:39Z" finished-at="2015-08-31T21:07:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="registrationHappyPathTest()[pri:0, instance:com.setngo.auth.registrationTest@68837a77]" name="registrationHappyPathTest" duration-ms="49902" started-at="2015-08-01T14:04:52Z" finished-at="2015-08-01T14:05:41Z">
+        <test-method status="PASS" signature="registrationHappyPathTest()[pri:0, instance:com.setngo.auth.registrationTest@4264b240]" name="registrationHappyPathTest" duration-ms="23274" started-at="2015-08-31T21:07:39Z" finished-at="2015-08-31T21:08:03Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- registrationHappyPathTest -->
       </class> <!-- com.setngo.auth.registrationTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>
